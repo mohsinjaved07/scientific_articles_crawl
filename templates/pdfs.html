@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+{% block title %}
+    Downloaded pdfs
+{% endblock %}
+{% block id %}
+    pdf
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="jumbotron jumboPosition" style="margin-top: 125px;">
+                    <h1>Downloaded PDFS</h1>
+                    <button type="button" class="btn btn-danger" onclick="url()">Go Back</button>
+                    <a class="btn btn-success" href="{{url_for('excel')}}" role="button">Convert it into excel</a>
+                    <a class="btn btn-primary" href="{{url_for('jsons')}}" role="button">Convert excel into json</a><br/><br/>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <dl class="alert alert-info" role="alert" style="text-align: center;">
+                            {% for message in messages: %}
+                            <dt>{{ message }}</dt>
+                            {% endfor %}
+                        </dl>
+                        {% endif %}
+                    {% endwith %}
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Downloaded PDFs</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:white;color:black;">
+                            {% for article in articles %}
+                            <tr>
+                                <td><div class="text-wrap">{{article.name}}</div></td>
+                                <td>
+                                    <form action="{{url_for('deletepdf')}}" method="POST">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-info" name="deletepdf" value="{{article.name}}">Delete</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script>
+        function url(){
+            window.location.href = "{{url_for('url')}}";
+        }
+    </script>
+{% endblock %}

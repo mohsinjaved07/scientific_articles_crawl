@@ -1,0 +1,57 @@
+#login{
+    background-image: url("/static/images/login.jpeg");
+}
+
+
+#search{
+    background-image: url("/static/images/search.jpg");
+}
+
+
+#pdf{
+    background-image: url("/static/images/pdfs.jpg");
+}
+
+
+#header{
+    background-color: rgba(0, 0, 0, 0.9);
+    color:white;
+    text-align: center;
+    padding:25px 0px 25px 0px;
+}
+
+
+#footer{
+    background-color: rgba(150, 150, 150);
+    padding-top:25px;
+    color:black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+
+form{
+    display: inline;
+}
+
+.text-wrap{
+    white-space: nowrap; 
+    width: 500px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.backgroundPosition{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+.jumbotron.jumboPosition{
+    background-color: rgb(0, 0, 0, 0.9);
+    color:white;
+}

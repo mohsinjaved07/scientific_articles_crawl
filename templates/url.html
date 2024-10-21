@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% block title %}
+    Welcome
+{% endblock %}
+{% block id %}
+    search
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="jumbotron jumboPosition" style="margin-top: 150px;">
+                    <h1 style="text-align: center;">URL</h1><br/>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <dl class="alert alert-info" role="alert" style="text-align: center;">
+                            {% for message in messages: %}
+                            <dt>{{ message }}</dt>
+                            {% endfor %}
+                        </dl>
+                        {% endif %}
+                    {% endwith %}
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Enter URL:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="url" class="form-control" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">Search</button>
+                        <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+                        <button type="button" class="btn btn-info" onclick="pdfs()">Downloaded pdfs</button>
+                    </form><br/><br/>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Articles</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color:white;color:black;">
+                            {% for article in articles %}
+                            <tr>
+                                <td><div class="text-wrap">{{article}}</div></td>
+                                <td>
+                                    <form action="{{url_for('download')}}" method="POST">
+                                        <button type="submit" class="btn btn-info" name="url" value="{{article}}">Download</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+    <script>
+        function logout(){
+            window.location.href = "{{url_for('logout')}}";
+        }
+        
+        function pdfs(){
+            window.location.href = "{{url_for('pdfs')}}";
+        }
+    </script>
+{% endblock %}
